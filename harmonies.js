@@ -10,8 +10,9 @@ $.widget( "ui.harmonies", {
 		return{};
 	},
 	
-	hormonie1: function ( hex ){
+	harmonie1: function ( hex ){
 		var self = this;
+		
 		this._trigger(  'onChange' , null, $.extend( self.ui, {harmonie: self._getHarmonies()} ) ) 
 	},
 	
