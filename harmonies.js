@@ -6,20 +6,28 @@ $.widget( "ui.harmonies", {
 		hex: '45ade2'
 	},
 	
-	_create: function() {		
+	hormonie1: function ( hex ){
+		var self = this;
+   		//this._trigger(  'onChange' , null, $.extend( self.ui, { harmony: [ "pink", "blue", "green" ] } ) ) 
+		this._trigger(  'onChange' , null, $.extend( self.ui, self._getHarmonies() ) ) 
+	},
+	
+	_create: function(){		
 			
 	},
 	
-	setOptions: function()
-	{
+	setOptions: function(){
 		
 	},
 	
-	destroy: function() {   	  
+	destroy: function() { 
+	  	  
+	},
+	
+	_getHarmonies: function(){
+		return ["Analog", "Accentuated", "Accentuated Analog", "Companion", "Complementary", "Complementary Plus", "Splitted Complementary", "Splitted Complementary Plus", "Monochromatic", "Quadratic", "Tetrade", "Triade", "Triade Plus" ];
 	}
+	
 })
-
-
-
 
 })( jQuery );
