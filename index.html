@@ -26,12 +26,15 @@
 		.harmonies({
 		 hex:"ff0066"
 		, onChange: function (event,ui) {
+			alert("heyho");
   			alert(ui.harmonies);
 		}//END FUNC
 	})//END HARMONIES
 	        
 	.change( function() {
-		$( this ).harmonies( $( "select option:selected" ) , 'hex'  );
+		console.log( $( "select option:selected" ) )
+		$( 'selected' ).harmonies( 'harmonie1' , '#ffccaa'  );
+		$( this ).harmonies( $( this ).find( "option:selected" ).text().toLowerCase() , 'hex'  );
 	})
 	;
   </script>
