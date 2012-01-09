@@ -11,10 +11,6 @@
 </script>
 
 </head>
-<<<<<<< HEAD
- HuHu
- :-)
-=======
  
 >>>>>>> e041c7fd92b27df912080c3d3b7ab7133d8b3cf0
 <body>
@@ -28,7 +24,11 @@
 			(function($){
 				$("#harmonies").harmonies({hex:"ff0066", onChange:function(event,ui){}});
 			})(jQuery);
-		</script>
+			
+			$("harmonies").change(function() {
+				$(this).harmonies( $("select option:selected") , 'hex'  );
+			});
+  </script>
   
 </body>
 </html>
