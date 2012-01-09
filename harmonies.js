@@ -6,10 +6,13 @@ $.widget( "ui.harmonies", {
 		hex: '45ade2'
 	},
 	
+	ui: function(){
+		return{};
+	},
+	
 	hormonie1: function ( hex ){
 		var self = this;
-   		//this._trigger(  'onChange' , null, $.extend( self.ui, { harmony: [ "pink", "blue", "green" ] } ) ) 
-		this._trigger(  'onChange' , null, $.extend( self.ui, self._getHarmonies() ) ) 
+		this._trigger(  'onChange' , null, $.extend( self.ui, {harmonie: self._getHarmonies()} ) ) 
 	},
 	
 	_create: function(){		
