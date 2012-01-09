@@ -5,10 +5,7 @@
 <title>Unbenanntes Dokument</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<script>
-
-
-</script>
+<script></script>
 
 </head>
 <body>
@@ -19,13 +16,19 @@
   </select>
   
   <script>				
-			(function($){
-				$("#harmonies").harmonies({hex:"ff0066", onChange:function(event,ui){}});
-			})(jQuery);
 			
-			$("harmonies").change(function() {
-				$(this).harmonies( $("select option:selected") , 'hex'  );
-			});
+				$( "#harmonies" )
+				  .harmonies({
+				    hex:"ff0066"
+				  , onChange: function (event,ui) {
+  				  
+  				  
+				    }//END FUNC
+				  })//END HARMONIES
+	        .change( function() {
+				      $( this ).harmonies( $( "select option:selected" ) , 'hex'  );
+			    })
+			    ;
   </script>
   
 </body>
