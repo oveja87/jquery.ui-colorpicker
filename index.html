@@ -18,11 +18,17 @@
  
 >>>>>>> e041c7fd92b27df912080c3d3b7ab7133d8b3cf0
 <body>
-  <select>
+  <select id="harmonies">
     <option>Hormonie1</option>
     <option>Hormonie2</option>
     <option>Hormonie3</option>
   </select>
+  
+  <script>				
+			(function($){
+				$("#harmonies").harmonies({hex:"ff0066"});
+			})(jQuery);
+		</script>
   
 </body>
 </html>
