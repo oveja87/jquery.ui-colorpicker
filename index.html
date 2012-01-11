@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Unbenanntes Dokument</title>
+<link href="css/colorpicker.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="harmonies.js"></script>
@@ -14,27 +15,31 @@
 
 </head>
 <body>
-  <select id="harmonies">
-    <option>Hormonie1</option>
-    <option>Hormonie2</option>
-    <option>Hormonie3</option>
+
+<div id="harmonies">
+  <select>
+    <option>bitte auswählen</option>
+    <option>Analog</option>
+    <option>Accentuated</option>
+    <option>Accentuated Analog</option>
   </select>
-  
+</div>
   <script>				
 			
 	$( "#harmonies" )
 		.harmonies({
 		 hex:"ff0066"
-		, onChange: function (event,ui) {
-			alert("heyho");
-  			alert(ui.harmonies);
+		,harmChange: function ( event, ui ) {
+  			//alert(ui.harmonie);
+		}
+		,colorChange: function ( event, ui ) {
+  			alert(ui.color);
 		}//END FUNC
 	})//END HARMONIES
 	        
 	.change( function() {
-		console.log( $( "select option:selected" ) )
-		$( 'selected' ).harmonies( 'harmonie1' , '#ffccaa'  );
-		$( this ).harmonies( $( this ).find( "option:selected" ).text().toLowerCase() , 'hex'  );
+		var f = $( this ).find( "option:selected" ).text().replace(/ /g, "_").toLowerCase();
+		$( this ).harmonies( f , 'hex'  );
 	})
 	;
   </script>
