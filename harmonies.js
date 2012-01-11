@@ -3,7 +3,34 @@
 $.widget( "ui.harmonies", {
 	
 	options: {
-		hex:"000000"
+		hex:"000000",
+		harmChange: function(event, ui){
+			
+			var self = ui.self,
+   				harm = self.ui.harmonie,  
+   				div = $("<div></div>"); 
+  			
+  			$("#colorfields_container").find(".colorfield").unbind(event);
+			$("#colorfields_container").html("");
+			for( i = 0; i < harm.length; i++ ) {
+				div.clone().addClass("colorfield").css("background-color", "#"+ harm[i]).appendTo("#colorfields_container");
+			}
+		  
+			$("#colorfields_container").find(".colorfield").bind({
+				click: function(){
+			 
+					var color = $(this).css("background-color");
+				 
+					var array;     
+					array = color.split("(");
+					array = array[1].split(")");
+					array = array[0].split(",");
+				 
+					hex = RGBtoHEX(array[0],array[1],array[2]);
+					self._trigger(  'colorChange' , null, $.extend( self.ui, {color: hex} ) ) 
+				}
+			});
+		}
 	},
 	
 	_create: function(){		
@@ -23,56 +50,36 @@ $.widget( "ui.harmonies", {
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: analogColors(hex)});
-		self._display();
+		self._trigger(  'harmChange' , null, {self:self} ) ;
 	},
 	
-	accentuated: function ( hex ){
+	accentuated: function ( ){
 		var self = this,
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: accentuatedColors(hex)});
-		self._display();
+		self._trigger(  'harmChange' , null, {self:self} ) ;
+		//self._display();
 	},
 	
-	accentuated_analog: function ( hex ){
+	accentuated_analog: function ( ){
 		var self = this,
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: accentuatedAnalogColors(hex)});
-		self._display();
+		self._trigger(  'harmChange' , null, {self:self} ) ;
+		//self._display();
 	},
 	
-	_display: function(){
-		
-		var self = this,
-			harm = self.ui.harmonie,		
-			div = $("<div></div>");		
-		
-		$("#colorfields_container").html("");
-		for(i=0;i<harm.length;i++) {
-			div.clone().addClass("colorfield").css("background-color", "#"+ harm[i]).appendTo("#colorfields_container");
-		}
-		
-		$("#colorfields_container").find(".colorfield").bind({
-				click: function(){
-					
-					var color = $(this).css("background-color");
-					
-					var array;					
-					array = color.split("(");
-					array = array[1].split(")");
-					array = array[0].split(",");
-					
-					hex = RGBtoHEX(array[0],array[1],array[2]);
-					self._trigger(  'colorChange' , null, $.extend( self.ui, {color: hex} ) ) 
-				}
-		});
-		
-		self._trigger(  'harmChange' , null, {harmonie: harm} ) ;
-	},
-	
-	_setOptions: function(){
-		
+	_setOptions: function(option, value){
+		$.Widget.prototype._setOption.apply( this, arguments );        
+	  
+        switch (option) { 
+			case "hex":
+				break;
+            case "harmChange":  
+                break;  
+        } 
 	},
 	
 	destroy: function() { 
