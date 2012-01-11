@@ -3,6 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Unbenanntes Dokument</title>
+<link href="css/colorpicker.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="harmonies.js"></script>
@@ -14,27 +16,45 @@
 
 </head>
 <body>
-  <select id="harmonies">
-    <option>Hormonie1</option>
-    <option>Hormonie2</option>
-    <option>Hormonie3</option>
-  </select>
-  
+<div id="colorpicker">
+
+	<div id="new_color"></div>
+	<div id="current_color"></div>
+    
+    <ul>
+    <li class="active">
+        <a href="#">Harmonies</a>
+        <div id="harmonies">
+          <select>
+            <option>bitte auswählen</option>
+            <option>Analog</option>
+            <option>Accentuated</option>
+            <option>Accentuated Analog</option>
+          </select>
+        </div>
+        <input type="button" value="Add all to favourites" class="add_to_fav"  />
+    </li>
+    </ul>
+
+</div>
+
+
   <script>				
 			
 	$( "#harmonies" )
 		.harmonies({
 		 hex:"ff0066"
-		, onChange: function (event,ui) {
-			alert("heyho");
-  			alert(ui.harmonies);
+		,harmChange: function ( event, ui ) {
+  			//alert(ui.harmonie);
+		}
+		,colorChange: function ( event, ui ) {
+			$("#new_color").css('background-color','#'+ui.color);
 		}//END FUNC
 	})//END HARMONIES
 	        
 	.change( function() {
-		console.log( $( "select option:selected" ) )
-		$( 'selected' ).harmonies( 'harmonie1' , '#ffccaa'  );
-		$( this ).harmonies( $( this ).find( "option:selected" ).text().toLowerCase() , 'hex'  );
+		var f = $( this ).find( "option:selected" ).text().replace(/ /g, "_").toLowerCase();
+		$( this ).harmonies( f , 'hex'  );
 	})
 	;
   </script>

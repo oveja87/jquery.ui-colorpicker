@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+}
+
+#colorpicker{
+	float:left;
+	width: 270px;
+	background-color:#ddd;
+	padding:10px;
+}
+
+#new_color{
+	float: left;
+	width: 130px;
+	height: 40px;
+	background-color:#000000;
+}
+
+#current_color{
+	float: right;
+	width: 130px;
+	height: 40px;
+	background-color:#000000;
+}
+
+#colorpicker a{
+	
+	
+	color:#fff;
+	text-decoration:none;	
+}
+
+#colorpicker>ul li{
+	list-style-image:url(../img/arrow_inactive.png);
+	list-style-position: inside;
+	background-color:#ccc;
+	color: #fff;
+	float:left;
+	width:250px;
+	padding: 3px 10px 3px 10px;
+	margin-top:10px;
+}
+
+#colorpicker .active{
+	list-style-image:url(../img/arrow_active.png);	
+}
+
+select{
+	float:left;
+	margin-top:10px;
+}
+
+.add_to_fav{
+	float:left;
+	margin-bottom:10px;
+}
+
+
