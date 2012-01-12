@@ -7,7 +7,8 @@
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<script src="harmonies.js"></script>
+<script src="js/harmonies.js"></script>
+<script src="js/favourites.js"></script>
 <script>
 
 
@@ -20,6 +21,7 @@
 
 	<div id="new_color"></div>
 	<div id="current_color"></div>
+    <input type="button" value="Add to favourites" class="add_to_fav"  />
     
     <ul>
     <li class="active">
@@ -32,26 +34,49 @@
             <option>Accentuated Analog</option>
           </select>
         </div>
-        <input type="button" value="Add all to favourites" class="add_to_fav"  />
+        <input type="button" value="Add all to favourites" class="add_all_to_fav"  />
+    </li>
+    <li class="active">
+    	<a href="#">Favourites</a>
+        <div id="favourites">
+        </div>
     </li>
     </ul>
 
 </div>
-  <script>				
+  <script>	
+  
+  	var harm;
+	var hex;			
 			
-	$( "#harmonies" )
-		.harmonies({
+	$( "#harmonies" ).harmonies({
 		 hex:"ff0066"
+		,harmChange:function ( event, ui ) {
+			harm = ui.harmonie;
+		}
 		,colorChange: function ( event, ui ) {
-			$("#new_color").css('background-color','#'+ui.color);
+			hex = ui.color;
+			$("#new_color").css('background-color','#'+hex);
 		}//END FUNC
-	})//END HARMONIES
-	        
-	.change( function() {
+	});//END HARMONIES
+	    
+	$("#harmonies").change( function() {
 		var f = $( this ).find( "option:selected" ).text().replace(/ /g, "_").toLowerCase();
 		$( this ).harmonies( f );
 	})
 	;
+	    
+	$("#favourites").favourites({
+	
+	});	//END FAVOURITES
+	
+	$(".add_to_fav").click( function(event, ui){
+		$("#favourites").favourites( 'addHex', 'hex');	
+	})
+	
+	$(".add_all_to_fav").click( function(event, ui){
+		$("#favourites").favourites( 'addHarm', 'harm');	
+	})
   </script>
   
 </body>

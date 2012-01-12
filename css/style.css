@@ -54,8 +54,9 @@ select{
 	margin-top:10px;
 }
 
-.add_to_fav{
+.add_to_fav, .add_all_to_fav{
 	float:left;
+	margin-top:10px;
 	margin-bottom:10px;
 }
 

@@ -4,18 +4,23 @@ $.widget( "ui.harmonies", {
 	
 	options: {
 		hex:"000000",
-		harmChange: function(event, ui){
+		onChange: function(event, ui){
 			
 			var self = ui.self,
+				el = self.element,
    				harm = self.ui.harmonie,  
-   				div = $("<div></div>"); 
-  			
-  			$("#colorfields_container").find(".colorfield").unbind(event);
-			$("#colorfields_container").html("");
+   				div = $("<div></div>");   			
+			
+			$("#colorfields_container").remove();			
+			div.clone().attr('id','colorfields_container').appendTo(el);
+  			$("#colorfields_container .colorfield").unbind(event);
 			for( i = 0; i < harm.length; i++ ) {
 				div.clone().addClass("colorfield").css("background-color", "#"+ harm[i]).appendTo("#colorfields_container");
 			}
-		  
+		  	
+			
+		  	self._trigger(  'harmChange' , null, $.extend( self.ui, {harmomie:harm} )) ;
+			
 			$("#colorfields_container").find(".colorfield").bind({
 				click: function(){
 			 
@@ -27,18 +32,14 @@ $.widget( "ui.harmonies", {
 					array = array[0].split(",");
 				 
 					hex = RGBtoHEX(array[0],array[1],array[2]);
-					self._trigger(  'colorChange' , null, $.extend( self.ui, {color: hex} ) ) 
+					self._trigger(  'colorChange' , null, $.extend( self.ui, {color: hex} ) ) ;
 				}
 			});
 		}
 	},
 	
-	_create: function(){		
-			var self = this,
-			el = self.element,	
-			div = $("<div></div>");
+	_create: function(){					
 			
-			div.clone().attr('id','colorfields_container').appendTo(el);
 	},
 	
 	ui: function(){
@@ -50,7 +51,7 @@ $.widget( "ui.harmonies", {
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: analogColors(hex)});
-		self._trigger(  'harmChange' , null, {self:self} ) ;
+		self._trigger(  'onChange' , null, {self:self} ) ;
 	},
 	
 	accentuated: function ( ){
@@ -58,7 +59,7 @@ $.widget( "ui.harmonies", {
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: accentuatedColors(hex)});
-		self._trigger(  'harmChange' , null, {self:self} ) ;
+		self._trigger(  'onChange' , null, {self:self} ) ;
 		//self._display();
 	},
 	
@@ -67,17 +68,17 @@ $.widget( "ui.harmonies", {
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: accentuatedAnalogColors(hex)});
-		self._trigger(  'harmChange' , null, {self:self} ) ;
+		self._trigger(  'onChange' , null, {self:self} ) ;
 		//self._display();
 	},
 	
-	_setOptions: function(option, value){
+	setOptions: function(option, value){
 		$.Widget.prototype._setOption.apply( this, arguments );        
 	  
         switch (option) { 
 			case "hex":
 				break;
-            case "harmChange":  
+            case "onChange":  
                 break;  
         } 
 	},
