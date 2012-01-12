@@ -6,6 +6,58 @@
 	padding:0;
 }
 
+/* Picker */
+
+#hsb_colorfield{
+	float:left;
+	width: 220px;
+	height: 220px;
+	margin-bottom: 10px;
+	background-image:url(../img/farbfeld.png);
+	background-size:contain;
+}
+
+#draggable{
+	width:15px;
+	height:15px;
+	background-color:transparent;
+	background-image:url(../img/dot.png);
+	background-size:cover;
+}
+
+#hsb_colorbar{
+	float:left;
+	width: 15px;
+	height: 220px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	background-image:url(../img/colorline.png);
+	background-size:cover;
+}
+
+#hsb_colorbar .ui-slider-handle{
+	width:15px;
+	height:15px;
+	margin-bottom:-7px;
+	margin-left:5px;
+	padding: 0px;
+	background-image:url(../img/dot.png);
+	background-size:cover;
+	background-color:transparent;
+	border:none;
+}
+
+
+/* Wheel */
+
+#wheelcontainer{
+	float:left;
+	width: 250px;
+	height: 250px;
+	margin-bottom: 10px;
+}
+
+
 /* Harmonies */
 
 #colorfields_container{
@@ -26,4 +78,6 @@
 #colorfields_container .colorfield:hover{
 	border:1px dotted white;
 }
+
+
 

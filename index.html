@@ -5,10 +5,14 @@
 <title>Unbenanntes Dokument</title>
 <link href="css/colorpicker.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="js/harmonies.js"></script>
 <script src="js/favourites.js"></script>
+<script src="js/picker.js"></script>
+<script src="js/wheel.js"></script>
+<script src="js/calc.js"></script>
 <script>
 
 
@@ -18,12 +22,75 @@
 </head>
 <body>
 <div id="colorpicker">
-
+	
 	<div id="new_color"></div>
 	<div id="current_color"></div>
     <input type="button" value="Add to favourites" class="add_to_fav"  />
-    
     <ul>
+	
+    <li class="active">
+        <a href="#">Colorpicker</a>
+        <div id="picker"></div>
+        <div id="wheel"></div>
+        <div id="rgb_slider" class="slider_input">
+        	<div>
+            <span>R:</span>
+            <div id="rgb_r" class="slider"></div>
+            <input type="text" size="3" id="rgb_r_input" class="slider_input"/>
+            </div>
+            <div>
+            <span>G:</span>
+            <div id="rgb_g" class="slider"></div>
+            <input type="text" size="3" id="rgb_g_input" class="slider_input"/>
+            </div>
+            <div>
+            <span>B:</span>
+            <div id="rgb_b" class="slider"></div>
+            <input type="text" size="3" id="rgb_b_input" class="slider_input"/>
+            </div>
+    	</div>
+        <div id="hsb_slider" class="slider_input">
+        	<div>
+                <span>H:</span>
+                <div id="hsb_h" class="slider"></div>
+                <input type="text" size="3" id="hsb_h_input" class="slider_input"/>
+            </div>
+            <div>
+                <span>S:</span>
+                <div id="hsb_s" class="slider"></div>
+                <input type="text" size="3" id="hsb_s_input" class="slider_input"/>
+            </div>
+            <div>
+                <span>B:</span>
+                <div id="hsb_b" class="slider"></div>
+                <input type="text" size="3" id="hsb_b_input" class="slider_input"/>
+            </div>
+    	</div>
+        <div id="cmyk_slider" class="slider_input">
+            <div>
+                <span>C:</span>
+                <div id="cmyk_c" class="slider"></div>
+                <input type="text" size="3" id="cmyk_c_input" class="slider_input"/>
+            </div>
+            <div>
+                <span>M:</span>
+                <div id="cmyk_m" class="slider"></div>
+                <input type="text" size="3" id="cmyk_m_input" class="slider_input"/>
+            </div>
+            <div>
+                <span>Y:</span>
+                <div id="cmyk_y" class="slider"></div>
+                <input type="text" size="3" id="cmyk_y_input" class="slider_input"/>
+            </div>
+            <div>
+                <span>K:</span>
+                <div id="cmyk_k" class="slider"></div>
+                <input type="text" size="3" id="cmyk_k_input" class="slider_input"/>
+            </div>
+    	</div>
+        <span>Hexwert: &nbsp;</span>
+        <div id="hexcontainer"><input type="text" id="hex_input" size="6"/></div>
+    </li>
     <li class="active">
         <a href="#">Harmonies</a>
         <div id="harmonies">
@@ -38,17 +105,25 @@
     </li>
     <li class="active">
     	<a href="#">Favourites</a>
-        <div id="favourites">
-        </div>
+        <div id="favourites"></div>
     </li>
     </ul>
 
 </div>
-  <script>	
-  
+
+  <script>
   	var harm;
-	var hex;			
-			
+		hex = "ff0066";		
+	
+	$("#rgb_slider").find(".slider").slider({max:255});
+	$("#hsb_h").slider({max:360});
+	$("#hsb_s").slider({max:100});
+	$("#hsb_b").slider({max:100});
+	$("#cmyk_slider").find(".slider").slider({max:100});
+	
+	$("#picker").picker();
+	$("#wheel").wheel();
+	
 	$( "#harmonies" ).harmonies({
 		 hex:"ff0066"
 		,harmChange:function ( event, ui ) {
@@ -59,25 +134,29 @@
 			$("#new_color").css('background-color','#'+hex);
 		}//END FUNC
 	});//END HARMONIES
-	    
+	
 	$("#harmonies").change( function() {
 		var f = $( this ).find( "option:selected" ).text().replace(/ /g, "_").toLowerCase();
 		$( this ).harmonies( f );
 	})
 	;
-	    
+	   
 	$("#favourites").favourites({
 	
 	});	//END FAVOURITES
 	
 	$(".add_to_fav").click( function(event, ui){
-		$("#favourites").favourites( 'addHex', 'hex');	
+		$("#favourites").favourites( 'addHex', hex);
 	})
 	
 	$(".add_all_to_fav").click( function(event, ui){
-		$("#favourites").favourites( 'addHarm', 'harm');	
+		$("#favourites").favourites( 'addHarm', harm);	
 	})
+	
+	$(window).unload(function() {
+	  $("#favourites").favourites( 'destroy', 'unload');
+	});
+	
   </script>
-  
 </body>
 </html>

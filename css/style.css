@@ -54,6 +54,39 @@ select{
 	margin-top:10px;
 }
 
+#picker{
+	margin-top:10px;	
+}
+
+#colorpicker .slider{
+	width: 146px;
+	margin-right: 20px;
+	margin-bottom: 5px;
+	margin-top: 3px;
+	float:left;
+}
+
+#colorpicker .slider .ui-slider-handle{
+	margin-left:-10px;
+}
+
+#colorpicker .slider_input > div{
+	float:left;
+	height:30px;	
+}
+
+#colorpicker span{
+	float:left;
+	display:block;
+	min-width:30px;
+	color:#666;
+}
+
+#hexcontainer{
+	padding-bottom: 13px;
+}
+
+
 .add_to_fav, .add_all_to_fav{
 	float:left;
 	margin-top:10px;
