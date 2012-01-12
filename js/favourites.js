@@ -4,7 +4,7 @@ $.widget( "ui.favourites", {
 	
 	options: {
 	  colors: ['11ff99','110099','00ff99','11ff00','000099'],
-	  
+	  //test test
 	},
 	
 	_create: function(){
