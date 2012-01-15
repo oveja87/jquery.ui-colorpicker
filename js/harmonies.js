@@ -46,11 +46,17 @@ $.widget( "ui.harmonies", {
 			
 	},
 	
+	setColor: function(hex){
+		var self = this;		
+		self.options.hex = hex;
+	},
+	
 	analog: function ( ){
 		var self = this,
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: analogColors(hex)});
+		$.extend( self.ui, {type:"analog"});
 		self._trigger(  'onChange' , null, {self:self} ) ;
 	},
 	
@@ -59,8 +65,8 @@ $.widget( "ui.harmonies", {
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: accentuatedColors(hex)});
+		$.extend( self.ui, {type:"accentuated"});
 		self._trigger(  'onChange' , null, {self:self} ) ;
-		//self._display();
 	},
 	
 	accentuated_analog: function ( ){
@@ -68,8 +74,8 @@ $.widget( "ui.harmonies", {
 			hex = self.options.hex;		
 			
 		$.extend( self.ui, {harmonie: accentuatedAnalogColors(hex)});
+		$.extend( self.ui, {type:"accentuated_analog"});
 		self._trigger(  'onChange' , null, {self:self} ) ;
-		//self._display();
 	},
 	
 	_setOptions: function(option, value){
@@ -77,6 +83,7 @@ $.widget( "ui.harmonies", {
 	  
         switch (option) { 
 			case "hex":
+				this.options.hex = value;
 				break;
             case "onChange":  
                 break;  

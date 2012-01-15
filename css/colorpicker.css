@@ -25,6 +25,14 @@
 	background-size:cover;
 }
 
+#wheeldrag{
+	width:15px;
+	height:15px;
+	background-color:transparent;
+	background-image:url(../img/dot.png);
+	background-size:cover;
+}
+
 #hsb_colorbar{
 	float:left;
 	width: 15px;
@@ -76,6 +84,36 @@
 }
 
 #colorfields_container .colorfield:hover{
+	border:1px dotted white;
+}
+
+/* Favourites */
+
+.favourite_container {
+	float:left;
+	border:1px dotted #666;
+	width:76px;
+	height:43px;
+	margin-right:5px;
+	margin-top: 5px;
+}
+
+.remove_favourite {
+	float:left; 
+	height:15px;
+	width:15px;
+	background-image:url('../img/trash.png');
+	background-size:contain;
+	margin-left:-15px;
+}
+
+.favourite_color {
+	float:left; 
+	width:76px;
+	height:43px;
+}
+
+.favourite_container:hover{
 	border:1px dotted white;
 }
 

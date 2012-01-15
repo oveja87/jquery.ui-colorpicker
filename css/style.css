@@ -34,7 +34,7 @@
 	text-decoration:none;	
 }
 
-#colorpicker>ul li{
+#colorpicker>ul>li{
 	list-style-image:url(../img/arrow_inactive.png);
 	list-style-position: inside;
 	background-color:#ccc;
@@ -52,6 +52,33 @@
 select{
 	float:left;
 	margin-top:10px;
+}
+
+#colormodes
+{
+	float:left;
+	background-color:#cccccc;
+	margin-bottom:10px;
+}
+
+#colormodes li
+{
+	display:block;
+	float:left;
+	margin-right:10px;
+	padding:2px 5px 2px 5px;
+	background-color:#aaa;
+	border:1px dotted #ffffff;
+}
+
+#colormodes li:hover{
+	background-color:#ddd;	
+	cursor:pointer;
+}
+
+#colormodes .active{
+	background-color:#ddd;
+	color: #666;
 }
 
 #picker{
