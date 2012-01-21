@@ -1,0 +1,1 @@
+<?php$host = 'dicewebdesign.de';$port = '3306';$db   = 'colorpicker';$user = 'color';$pass = 'picker';?>
