@@ -5,7 +5,6 @@ $.widget( "ui.favourites", {
 	options: {
 	  colors: [],
 	  index: 0
-	  //test test
 	},
 	
 	_create: function(){
@@ -26,7 +25,6 @@ $.widget( "ui.favourites", {
 				 colors = msg.colors.split(',');
 				 for(i = 0; i<colors.length; i++)
 					self.addHex(colors[i], self.ui);
-
 				 
 			}
 			else if(parseInt(msg.status)==0)
@@ -72,7 +70,6 @@ $.widget( "ui.favourites", {
 			console.log(self.options.colors);
 		});
 		self.options.index++;
-		
 		
 	},
 	
