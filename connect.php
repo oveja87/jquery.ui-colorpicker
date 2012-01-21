@@ -1,0 +1,1 @@
+<?php require('settings.php');try	{		$con = mysql_connect($host . ":" . $port,$user,$pass);		if ($con)			mysql_select_db($db, $con);		mysql_query("SET NAMES 'utf8'");	}catch (Exception $e){ }	?>
