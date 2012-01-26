@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Unbenanntes Dokument</title>
+<title>Colorpicker Demo</title>
 <link href="css/colorpicker.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/jquery-ui-1.8.9.custom.css">
@@ -129,6 +129,7 @@
 	$("#cmyk").find(".slider").slider({max:100, value:0});
 	
 	$("#picker").picker({
+		type: 'circle',
 		colorChange: function ( event, ui ) {
 			hex = ui.hex;
 			$("#new_color").css('background-color','#'+hex);

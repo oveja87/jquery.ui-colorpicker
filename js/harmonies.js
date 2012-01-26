@@ -92,10 +92,6 @@ $.widget( "ui.harmonies", {
 	
 	destroy: function() { 
 	  	  
-	},
-	
-	_getHarmonies: function(){
-		return ["Analog", "Accentuated", "Accentuated Analog", "Companion", "Complementary", "Complementary Plus", "Splitted Complementary", "Splitted Complementary Plus", "Monochromatic", "Quadratic", "Tetrade", "Triade", "Triade Plus" ];
 	}
 	
 })

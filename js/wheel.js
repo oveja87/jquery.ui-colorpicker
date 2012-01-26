@@ -17,7 +17,7 @@ $.widget( "ui.wheel", {
 			
 			colorwheel = div.clone().attr('id','wheelcontainer').appendTo(el);
 			
-			dot = div.clone().attr('id','wheeldrag').css({position: "fixed"}).appendTo(colorwheel);
+			dot = div.clone().attr('id','wheeldrag').css({position: "relative"}).appendTo(colorwheel);
 		
 		$(dot).hide();
 		
