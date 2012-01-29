@@ -21,7 +21,7 @@ $.widget( "ui.favourites", {
 				 if(msg.colors.length == 0)
 					return false;
 				 i = 0;
-				 console.log(msg.colors);
+				 //console.log(msg.colors);
 				 colors = msg.colors.split(',');
 				 for(i = 0; i<colors.length; i++)
 					self.addHex(colors[i], self.ui);
@@ -29,7 +29,7 @@ $.widget( "ui.favourites", {
 			}
 			else if(parseInt(msg.status)==0)
 			{
-				console.log("error");
+				//console.log("error");
 			}
 			
 		}
@@ -56,7 +56,7 @@ $.widget( "ui.favourites", {
 			self.options.index = 0;
 		
 		
-		console.log(self.options.colors);
+		//console.log(self.options.colors);
 		container = div.clone().addClass('favourite_container').attr('index',self.options.index).appendTo(el);
 		colorbox = div.clone().addClass('favourite_color').appendTo(container);
 		colorbox.css('background-color','#'+color);
@@ -64,10 +64,10 @@ $.widget( "ui.favourites", {
 		trash.click(function() {
 			
 			index = $(this).parent().attr('index');
-			console.log('removing element '+index);
+			//console.log('removing element '+index);
 			self.options.colors.splice(index,1);
 			$(this).parent().remove();
-			console.log(self.options.colors);
+			//console.log(self.options.colors);
 		});
 		self.options.index++;
 		
@@ -100,11 +100,11 @@ $.widget( "ui.favourites", {
 			
 			if(parseInt(msg.status)==1)
 			{
-				 console.log("success");
+				 //console.log("success");
 			}
 			else if(parseInt(msg.status)==0)
 			{
-				console.log("error");
+				//console.log("error");
 			}
 			
 		}

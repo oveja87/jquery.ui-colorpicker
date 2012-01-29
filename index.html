@@ -120,7 +120,7 @@
 
   <script>
   	var harm;
-		hex = "000000";		
+		hexwert = "000000";		
 	
 	$("#rgb").find(".slider").slider({max:255, value:0});	
 	$("#hsb_h").slider({max:360, value:0});	
@@ -131,8 +131,8 @@
 	$("#picker").picker({
 		type: 'circle',
 		colorChange: function ( event, ui ) {
-			hex = ui.hex;
-			$("#new_color").css('background-color','#'+hex);
+			hexwert = ui.hex;
+			$("#new_color").css('background-color','#'+hexwert);
 			
 			$("#rgb_r_input").val(ui.rgb[0]);
 			$("#rgb_g_input").val(ui.rgb[1]);
@@ -160,16 +160,16 @@
 			$("#cmyk_y").slider({value: ui.cmyk[2]});
 			$("#cmyk_k").slider({value: ui.cmyk[3]});
 			
-			$("#hex_input").val(hex);
+			$("#hex_input").val(hexwert);
 			
-			$("#harmonies").harmonies( 'setColor', hex)
+			$("#harmonies").harmonies( 'setColor', hexwert)
 		}
 	});
 	$("#wheel").wheel({
 		colorChange: function ( event, ui ) {
-			hex = ui.color;
-			$("#new_color").css('background-color','#'+hex);
-			$("#picker").picker( 'hexChanged', hex);
+			hexwert = ui.color;
+			$("#new_color").css('background-color','#'+hexwert);
+			$("#picker").picker( 'hexChanged', hexwert);
 		}
 	});
 		
@@ -253,14 +253,14 @@
 	// HARMONIES
 	
 	$( "#harmonies" ).harmonies({
-		 hex: "000000"
+		 hexwert: "000000"
 		,harmChange:function ( event, ui ) {
 			harm = ui.harmonie;
 		}
 		,colorChange: function ( event, ui ) {
-			hex = ui.color;
-			$("#new_color").css('background-color','#'+hex);			
-			$("#picker").picker( 'hexChanged', hex);
+			hexwert = ui.color;
+			$("#new_color").css('background-color','#'+hexwert);			
+			$("#picker").picker( 'hexChanged', hexwert);
 		}
 	});
 	
@@ -278,7 +278,7 @@
 	});	
 	
 	$(".add_to_fav").click( function(event, ui){
-		$("#favourites").favourites( 'addHex', hex);
+		$("#favourites").favourites( 'addHex', hexwert);
 	})
 	
 	$(".add_all_to_fav").click( function(event, ui){

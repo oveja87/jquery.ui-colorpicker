@@ -25,23 +25,13 @@ $.widget( "ui.picker", {
 			
 		if(type == 'bar'){
 			var container = div.clone().attr('id','picker_bar').appendTo(el),			
-				colorfield = div.clone().attr('id','hsb_colorfield').appendTo(container);
-				
-			div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"});
-			
-			div.clone().attr('id','hsb_colorbar').appendTo(container).slider({max:360, orientation: "vertical"});
-			
+				colorfield = div.clone().attr('id','hsb_colorfield').appendTo(container),
+				draggable = div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"}),
+				colorbar = div.clone().attr('id','hsb_colorbar').appendTo(container).slider({max:360, orientation: "vertical"});			
 			
 			//eventhandler
 			
-			$("#draggable").bind('drag', {context:this}, this._colorfieldChanged);			
-			
-			$( "#hsb_colorbar" ).bind('slide', {context:this}, this._colorbarChanged);				
-			
-			$("#hsb_colorfield").bind({
-				mousedown: this._graphicDown,
-				mouseup: this._graphicUp
-			});
+			colorbar.bind('slide', {context:this}, this._colorbarChanged);	
 		}
 		else if(type == 'circle'){
 			var circle = div.clone().attr('id','hsb_circle').appendTo(el),
@@ -51,13 +41,6 @@ $.widget( "ui.picker", {
 				draggable =	div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"});
 			
 			//eventhandler
-			
-			draggable.bind('drag', {context:this}, this._colorfieldChanged);						
-			
-			colorfield.bind({
-				mousedown: this._graphicDown,
-				mouseup: this._graphicUp
-			});
 			
 			circle.bind({
 				mousedown: function(event, ui){	
@@ -77,6 +60,12 @@ $.widget( "ui.picker", {
 			
 			$(document).bind('mousemove', {context:this}, this._circlemove);
 		}
+		
+		draggable.bind('drag', {context:this}, this._colorfieldChanged);
+		
+		colorfield.bind({
+			mousedown: this._graphicDown
+		});
 		
 		$.extend( self.ui, {
 			hex: hex, 			
@@ -148,16 +137,8 @@ $.widget( "ui.picker", {
 	},
 	
 	_graphicDown:function(e){
-		if(down == false)
-		{
-			down = true;
-			$("#draggable").offset({left:e.pageX-7,top:e.pageY-7});			
-		}
+		$("#draggable").offset({left:e.pageX-7,top:e.pageY-7});	
 		$("#draggable").trigger(e);
-	},	
-	
-	_graphicUp:function(e){
-		down = false;
 	},
 	
 	_colorbarChanged:function(event, ui){
