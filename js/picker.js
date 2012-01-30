@@ -63,9 +63,7 @@ $.widget( "ui.picker", {
 		
 		draggable.bind('drag', {context:this}, this._colorfieldChanged);
 		
-		colorfield.bind({
-			mousedown: this._graphicDown
-		});
+		colorfield.bind('mousedown', {context:this}, this._graphicDown);
 		
 		$.extend( self.ui, {
 			hex: hex, 			
@@ -137,8 +135,12 @@ $.widget( "ui.picker", {
 	},
 	
 	_graphicDown:function(e){
+		var ctx = e.data.context;
+		
+		$("#hsb_colorfield").unbind();
 		$("#draggable").offset({left:e.pageX-7,top:e.pageY-7});	
 		$("#draggable").trigger(e);
+		$("#hsb_colorfield").bind('mousedown', {context:ctx}, ctx._graphicDown);
 	},
 	
 	_colorbarChanged:function(event, ui){
@@ -151,12 +153,9 @@ $.widget( "ui.picker", {
 			
 		$.extend( ctx.ui, {hsb: [h,s,b]});		
 		ctx._update('hsb', [h,s,b]);
-		
-		
 	},
 	
 	_colorfieldChanged:function(event, ui){
-		
 		var self = $(this),
 			ctx = event.data.context,
 			h = ctx.ui.hsb[0],
@@ -165,7 +164,6 @@ $.widget( "ui.picker", {
 			b = parseInt(100-(self.position().top - self.parent().position().top)/(self.parent().height()-self.height())*100);
 		
 		ctx._update('hsb', [h,s,b]);
-		
 	},
 	
 	hexChanged: function(hex){
