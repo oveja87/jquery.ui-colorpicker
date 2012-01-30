@@ -8,8 +8,9 @@ $.widget( "ui.favourites", {
 	},
 	
 	_create: function(){
-		var self = this;
-		colors = this.options.colors;
+		var self = this
+		   ,colors = this.options.colors;
+			
 		$.ajax({
 		type: "POST",
 		url: "getfavourites.php",
@@ -18,14 +19,19 @@ $.widget( "ui.favourites", {
 			
 			if(parseInt(msg.status)==1)
 			{
-				 if(msg.colors.length == 0)
-					return false;
-				 i = 0;
-				 //console.log(msg.colors);
-				 colors = msg.colors.split(',');
-				 for(i = 0; i<colors.length; i++)
-					self.addHex(colors[i], self.ui);
+				 //console.log("success");
 				 
+				 if(msg.colors.length == 0){
+					return false;
+				 }
+				 
+				 var i = 0
+				    ,colors = msg.colors.split(',')
+					;
+					
+				 for(i = 0; i<colors.length; i++){
+					self.addHex(colors[i], self.ui);
+				 }				 
 			}
 			else if(parseInt(msg.status)==0)
 			{
@@ -43,41 +49,56 @@ $.widget( "ui.favourites", {
 	},
 	
 	addHex: function(event, ui){
-		var self = this,
-			el = self.element,
-			fav = self.ui.favourites,  
-			div = $("<div></div>"),
-			color = event;
-		
+		var self = this
+		   ,el = self.element
+		   ,fav = self.ui.favourites 
+		   ,div = $("<div></div>")
+		   ,color = event
+		   ;
 		
 		self.options.colors[self.options.index] = color;
 		
-		if(self.options.index == 5)
+		if(self.options.index == 5){
 			self.options.index = 0;
+		}
 		
+		var container = div.clone().addClass('favourite_container').attr('index',self.options.index).appendTo(el)
+		   ,colorbox = div.clone().addClass('favourite_color').css('background-color','#'+color).appendTo(container)
+		   ,trash = div.clone().addClass('remove_favourite').appendTo(container)
+		   ;
 		
-		//console.log(self.options.colors);
-		container = div.clone().addClass('favourite_container').attr('index',self.options.index).appendTo(el);
-		colorbox = div.clone().addClass('favourite_color').appendTo(container);
-		colorbox.css('background-color','#'+color);
-		trash = div.clone().addClass('remove_favourite').appendTo(container);
 		trash.click(function() {
-			
-			index = $(this).parent().attr('index');
-			//console.log('removing element '+index);
+			var index = $(this).parent().attr('index');
 			self.options.colors.splice(index,1);
 			$(this).parent().remove();
-			//console.log(self.options.colors);
 		});
+		
+		colorbox.click(function() {
+			var color = $(this).css("background-color")
+				,array
+				,hex
+				;     
+			
+			array = color.split("(");
+			array = array[1].split(")");
+			array = array[0].split(",");
+				 
+			hex = RGBtoHEX(array[0],array[1],array[2]);
+			
+			self._trigger(  'colorChange' , null, $.extend( self.ui, {color: hex} ) ) ;
+		});
+		
 		self.options.index++;
 		
 	},
 	
 	addHarm: function(event, ui){
-		  i = 0;
-		  colors = event;
-		  for(i = 0; i<colors.length; i++)
+		var i = 0
+		   ,colors = event;
+		   
+		for(i = 0; i<colors.length; i++){
 			this.addHex(colors[i], self.ui);
+		}
 	},
 	
 	setOptions: function(option, value){
@@ -90,7 +111,7 @@ $.widget( "ui.favourites", {
 	},
 	
 	destroy: function() { 
-		colors = this.options.colors;
+		var colors = this.options.colors;
 		$.ajax({
 		type: "POST",
 		url: "savefavourite.php",

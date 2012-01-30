@@ -173,6 +173,17 @@ $.widget( "ui.picker", {
 		
 		if(hex.length == 6)
 		{
+			var x;
+			
+			for(var i = 0; i < 6; i++){
+				x = hex.charCodeAt(i);
+				
+				if(!(x >= 48 && x <= 57) && !(x >= 97 && x <= 102))
+				{
+					hex = '000000';
+				}
+			}
+			
 			self._update('hex', hex);
 		}
 	},
@@ -180,15 +191,41 @@ $.widget( "ui.picker", {
 	rgbChanged: function(rgb){
 		var self = this;
 		
-		// EINGABE ÜBERPRÜFEN		
+		// EINGABE ÜBERPRÜFEN
 		
+		for(var i = 0; i<3;i++){
+			if(isNaN(rgb[i])){	
+				rgb[i]=0;	
+			}
+			if(rgb[i]>255){
+				rgb[i]=255;	
+			}
+		}
+			
 		self._update('rgb', rgb);
+		
 	},
 	
 	hsbChanged: function(hsb){
 		var self = this;
 		
 		// EINGABE ÜBERPRÜFEN	
+		
+		for(var i = 0; i<3;i++){
+			if(isNaN(hsb[i])){	
+				hsb[i]=0;	
+			}
+		}
+		
+		if(hsb[0]>360){
+			hsb[0]=360;	
+		}
+		if(hsb[1]>100){
+			hsb[1]=100;	
+		}
+		if(hsb[2]>100){
+			hsb[2]=100;	
+		}
 		
 		self._update('hsb', hsb);
 	},
@@ -197,6 +234,15 @@ $.widget( "ui.picker", {
 		var self = this;
 		
 		// EINGABE ÜBERPRÜFEN
+		
+		for(var i = 0; i<4;i++){
+			if(isNaN(cmyk[i])){	
+				cmyk[i]=0;	
+			}
+			if(cmyk[i]>100){
+				cmyk[i]=100;	
+			}
+		}
 		
 		self._update('cmyk', cmyk);
 		

@@ -129,7 +129,7 @@
 	$("#cmyk").find(".slider").slider({max:100, value:0});
 	
 	$("#picker").picker({
-		type: 'circle',
+		type: 'bar',
 		colorChange: function ( event, ui ) {
 			hexwert = ui.hex;
 			$("#new_color").css('background-color','#'+hexwert);
@@ -253,8 +253,7 @@
 	// HARMONIES
 	
 	$( "#harmonies" ).harmonies({
-		 hexwert: "000000"
-		,harmChange:function ( event, ui ) {
+		harmChange:function ( event, ui ) {
 			harm = ui.harmonie;
 		}
 		,colorChange: function ( event, ui ) {
@@ -274,7 +273,11 @@
 	// FAVOURITES 
 	   
 	$("#favourites").favourites({
-	
+		colorChange: function ( event, ui ) {
+			hexwert = ui.color;
+			$("#new_color").css('background-color','#'+hexwert);			
+			$("#picker").picker( 'hexChanged', hexwert);
+		}	
 	});	
 	
 	$(".add_to_fav").click( function(event, ui){
@@ -288,7 +291,6 @@
 	$(window).unload(function() {
 	  $("#favourites").favourites( 'destroy', 'unload');
 	});
-	
 	
 	
 	//
