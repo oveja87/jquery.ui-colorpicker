@@ -26,7 +26,7 @@ $.widget( "ui.picker", {
 		if(type == 'bar'){
 			var container = div.clone().attr('id','picker_bar').appendTo(el),			
 				colorfield = div.clone().attr('id','hsb_colorfield').appendTo(container),
-				draggable = div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"}),
+				draggable = div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"}).disableSelection(),
 				colorbar = div.clone().attr('id','hsb_colorbar').appendTo(container).slider({max:360, orientation: "vertical"});			
 			
 			//eventhandler
@@ -36,9 +36,9 @@ $.widget( "ui.picker", {
 		else if(type == 'circle'){
 			var circle = div.clone().attr('id','hsb_circle').appendTo(el),
 				container = div.clone().attr('id','picker_circle').appendTo(el),
-				circledrag = div.clone().attr('id','circledrag').css({position: "relative"}).appendTo(circle)
+				circledrag = div.clone().attr('id','circledrag').css({position: "relative"}).disableSelection().appendTo(circle),
 				colorfield = div.clone().attr('id','hsb_colorfield').appendTo(container),
-				draggable =	div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"});
+				draggable =	div.clone().attr('id','draggable').appendTo(colorfield).draggable({containment: "parent"}).disableSelection();
 			
 			//eventhandler
 			
