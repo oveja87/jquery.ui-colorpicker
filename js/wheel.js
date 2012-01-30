@@ -25,13 +25,15 @@ $.widget( "ui.wheel", {
 		var w = $(colorwheel).width(),
 			h = $(colorwheel).height();
 		
+		
 		$("<canvas></canvas>").attr({id: "canvas", width: w, height: h}).appendTo(colorwheel);
 			
 			
 		var imageObj = new Image();
 			imageObj.src = "img/colorwheel.png";
-				
-		$(imageObj).ready(function(e) {
+			
+			
+		$(imageObj).load(function(e) {
         	self._drawImage(imageObj, self);
         });
 			
