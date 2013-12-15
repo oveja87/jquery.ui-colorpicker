@@ -10,4 +10,4 @@ Participants
 ------------------------
 Eva-Maria Rolfes, Tobias Weber, Katrin Hewer
 
-In cooperation with [littleweblab UG](http://www.littleweblab.com/) and the [University of Applied Science Trier](http://www.hochschule-trier.de/).
+In cooperation with littleweblab UG and the [University of Applied Science Trier](http://www.hochschule-trier.de/).
